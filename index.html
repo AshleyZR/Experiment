@@ -15,6 +15,14 @@
 </div>
 <script>
 (function() {
+  // Clear any leftover stash from previous runs.
+  try {
+    for (var i = 0; i < 10; i++) {
+      localStorage.removeItem('cct_csv_' + i);
+      localStorage.removeItem('cct_name_' + i);
+    }
+  } catch (e) {}
+
   var order = Math.random() < 0.5 ? ['hot', 'cold'] : ['cold', 'hot'];
   var orderStr = order.join(',');
   var firstUrl = '../columbia-card-task-' + order[0] + '/index.html'
