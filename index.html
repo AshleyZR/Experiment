@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Columbia Card Task</title>
+<style>
+  body { font-family: sans-serif; display: flex; align-items: center; justify-content: center; height: 100vh; margin: 0; background: #fff; }
+  .msg { text-align: center; color: #333; }
+</style>
+</head>
+<body>
+<div class="msg">
+  <p>Loading the experiment&hellip;</p>
+  <p><small>If you are not redirected, <a id="manual" href="#">click here</a>.</small></p>
+</div>
+<script>
+(function() {
+  var order = Math.random() < 0.5 ? ['hot', 'cold'] : ['cold', 'hot'];
+  var orderStr = order.join(',');
+  var firstUrl = '../columbia-card-task-' + order[0] + '/index.html'
+                 + '?cct_order=' + encodeURIComponent(orderStr) + '&cct_i=0';
+  document.getElementById('manual').href = firstUrl;
+  window.location.replace(firstUrl);
+})();
+</script>
+</body>
+</html>
