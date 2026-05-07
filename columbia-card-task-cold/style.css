@@ -1,0 +1,229 @@
+.center-text {
+  text-align:center;
+  font-size: 90%;
+  position: relative;
+  top: 50%;
+  -ms-transform: translateY(-50%);
+  -webkit-transform: translateY(-50%);
+  transform: translateY(-50%);
+}
+
+.block-text2 {
+  font-size: 110%;
+  font-weight: bold;
+  width:100%;
+  height 100vw;
+  text-align: center;
+  margin: 0 auto;
+  margin-bottom: 0.3em;
+  line-height: 110%;
+}
+
+.practiceText {
+ width: 85vw;
+ height: auto;
+ max-height: 22vh;
+ overflow: hidden;
+ box-sizing: border-box;
+ padding: 1vh 1vw;
+ position: absolute;
+ top: 1%;
+ left: 2.5%;
+ margin-right:50%;
+ transform: translate(0%,0%);
+ z-index: 2;
+}
+
+.cardbox {
+ width:50vw;
+ position: fixed;
+ bottom: 9vh;
+ left: 50%;
+ transform: translateX(-50%);
+ background-color: white;
+}
+
+.cardbox2 {
+ width:50vw;
+ position: fixed;
+ bottom: 9vh;
+ left: 50%;
+ transform: translateX(-50%);
+ background-color: white;
+}
+
+.cct-box {
+ width:87.5vw;
+ height: 18vh;
+ position: fixed;
+ top:22vh;
+ left:6vw;
+ margin-right:0%;
+}
+
+.cct-box2 {
+ width:87.5vw;
+ height: 18vh;
+ position: fixed;
+ top:22vh;
+ left:6vw;
+ margin-right:0%;
+}
+
+.titleBigBox {
+	width: 80vw;
+	height: 18vh;
+	position: absolute;
+	top: 0%;
+	left: 4.5%;
+	margin-right:50%;
+	background-color: white;
+}
+
+.square {
+   float:left;
+   position: relative;
+   width: 10%;
+   padding-bottom : %; /* = width for a 1:1 aspect ratio */
+   margin:1%;
+   overflow:hidden;
+   color: #fff;
+}
+
+.card_image {
+   height: 7vh;
+   max-height: 9vw;
+   display: block;
+}
+
+
+
+.titleboxLeft {
+  width:22vw;
+  height: 2vw;
+  position:absolute;
+  top:10%;
+  left:6%;
+  margin-right:-50%;
+  transform: translate(0%,0%);
+  border-style: solid;
+  border-color: black;
+}
+
+.titleboxLeft1 {
+  width:22vw;
+  height: 2vw;
+  position:absolute;
+  top:40%;
+  left:6%;
+  margin-right:-50%;
+  transform: translate(0%,0%);
+  border-style: solid;
+  border-color: black;
+}
+
+.titleboxRight {
+  width:22vw;
+  height: 2vw;
+  position:absolute;
+  top:10%;
+  left:72%;
+  margin-right:-50%;
+  transform: translate(0%,0%);
+  border-style: solid;
+  border-color: black;
+}
+
+.titleboxRight1 {
+  width:22vw;
+  height: 2vw;
+  position:absolute;
+  top:40%;
+  left:72%;
+  margin-right:-50%;
+  transform: translate(0%,0%);
+  border-style: solid;
+  border-color: black;
+}
+
+
+
+.titlebox {
+  width:30vw;
+  height: 3vw;
+  position:absolute;
+  top:10%;
+  left:50%;
+  margin-right:-50%;
+  transform: translate(-50%,0%);
+}
+
+
+.titleboxMiddle1 {
+  width:22vw;
+  height: 2vw;
+  position:absolute;
+  top:40%;
+  left:50%;
+  margin-right:-50%;
+  transform: translate(-50%,0%);
+  border-style: solid;
+  border-color: black;
+}
+
+.buttonbox {
+  width:14vw;
+  height: 6vh;
+  position: fixed;
+  bottom: 53vh;
+  left: 50%;
+  transform: translateX(-50%);
+  border-style: solid;
+  border-color: white;
+  z-index: 10;
+}
+
+.allbuttons {
+  width:85vw;
+  height: 6vh;
+  position: fixed;
+  bottom: 45vh;
+  left: 50%;
+  transform: translateX(-50%);
+  border-style: solid;
+  border-color: White;
+  z-index: 10;
+}
+
+.CCT-btn {
+  font-size:23px;
+  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+  padding: 0px 0px 0px 0px;
+  color: white;
+  background-color:cornflowerblue;
+  cursor: pointer;
+  line-height: 1.4;
+  text-align: center;
+  white-space: nowrap;
+  vertical-align: middle;
+  background-image: none;
+  border: 1px solid transparent;
+  border-radius: 4px;
+  height: 100%;
+  width: 100%;
+}
+
+.CCT-btn:hover {
+  border-color:#999;
+  background-color: darkblue;
+}
+
+.chooseButton {
+  width: 2.28vw;
+  height: 3vw;
+  margin: 0px 2px;
+}
+
+.CCT-btn:disabled {
+  background-color: #8ea0c2;
+}

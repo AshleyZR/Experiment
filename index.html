@@ -188,7 +188,7 @@ function finishExperiment() {
   clearStash();
   var order = Math.random() < 0.5 ? ['hot', 'cold'] : ['cold', 'hot'];
   var orderStr = order.join(',');
-  var firstUrl = '../columbia-card-task-' + order[0] + '/index.html'
+  var firstUrl = 'columbia-card-task-' + order[0] + '/index.html'
                  + '?cct_order=' + encodeURIComponent(orderStr) + '&cct_i=0';
 
   window.addEventListener('message', function(e) {
