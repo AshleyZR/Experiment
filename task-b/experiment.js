@@ -362,7 +362,7 @@ var post_task_block = {
 
 /* define static blocks */
 var feedback_instruct_text =
-	'Welcome to the experiment. This task will take around 15 minutes. Press <strong>enter</strong> to begin.'
+	'Welcome to the experiment. Press <strong>enter</strong> to begin.'
 var feedback_instruct_block = {
 	type: 'poldrack-text',
 	cont_key: [13],
@@ -479,7 +479,7 @@ var start_test_block = {
 	data: {
 		trial_id: 'test_intro'
 	},
-	text: '<div class = centerbox><p class = center-block-text>We will now start the test. Respond to the "X" as quickly as possible by pressing the spacebar. Press <strong>enter</strong> to begin.</p></div>',
+	text: '<div class = centerbox><p class = center-block-text>We will now start the test. Press <strong>enter</strong> to begin.</p></div>',
 	cont_key: [13],
 	timing_post_trial: 1000
 };
