@@ -38,8 +38,8 @@ var appendTestData = function() {
 		num_loss_cards: numLossCards,
 		gain_amount: gainAmt,
 		loss_amount: lossAmt,
-		round_points: roundPointsArray.slice(-1),
-		whichRound: whichRound
+		round_points: roundPointsArray[roundPointsArray.length - 1],
+		which_round: whichRound
 	})
 }
 
