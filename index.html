@@ -4,15 +4,29 @@
 <meta charset="UTF-8">
 <title>Columbia Card Task</title>
 <style>
-  body { font-family: sans-serif; display: flex; align-items: center; justify-content: center; height: 100vh; margin: 0; background: #fff; }
-  .msg { text-align: center; color: #333; max-width: 480px; padding: 0 20px; }
-  .msg h1 { font-weight: normal; font-size: 22px; }
+  html, body { margin: 0; padding: 0; height: 100%; background: #fff; }
+  body { font-family: sans-serif; }
+  #intro, #thanks { display: flex; align-items: center; justify-content: center; height: 100vh; flex-direction: column; text-align: center; padding: 0 20px; }
+  #intro p, #thanks p { max-width: 560px; color: #333; }
+  button.primary {
+    font-size: 18px; padding: 12px 28px; cursor: pointer;
+    border: none; border-radius: 6px; background: #2563eb; color: #fff;
+  }
+  button.primary:hover { background: #1d4ed8; }
+  iframe#exp { position: fixed; inset: 0; width: 100%; height: 100%; border: 0; display: block; background: #fff; }
 </style>
 </head>
 <body>
-<div class="msg" id="msg">
-  <p>Loading the experiment&hellip;</p>
-  <p><small>If you are not redirected, <a id="manual" href="#">click here</a>.</small></p>
+
+<div id="intro">
+  <h1 style="font-weight:normal;">Columbia Card Task</h1>
+  <p>You will complete two short tasks back-to-back. The experiment will run in fullscreen.</p>
+  <p><button class="primary" id="start">Launch Experiment</button></p>
+</div>
+
+<div id="thanks" style="display:none;">
+  <h1 style="font-weight:normal;">Thank you for participating!</h1>
+  <p>Your data has been saved. You may close this window.</p>
 </div>
 
 <script>
@@ -34,7 +48,6 @@ function crc32(bytes) {
 }
 
 function buildZip(files) {
-  // files: [{name: string, data: Uint8Array}]
   var enc = new TextEncoder();
   var now = new Date();
   var dosTime = ((now.getHours() & 0x1F) << 11) | ((now.getMinutes() & 0x3F) << 5) | (Math.floor(now.getSeconds() / 2) & 0x1F);
@@ -119,50 +132,83 @@ function downloadBlob(filename, blob) {
   setTimeout(function(){ URL.revokeObjectURL(url); }, 1000);
 }
 
+function clearStash() {
+  for (var i = 0; i < 10; i++) {
+    localStorage.removeItem('cct_csv_' + i);
+    localStorage.removeItem('cct_name_' + i);
+  }
+}
+
+function exitFullscreen() {
+  if (document.fullscreenElement || document.webkitFullscreenElement || document.mozFullScreenElement) {
+    if (document.exitFullscreen) document.exitFullscreen();
+    else if (document.webkitExitFullscreen) document.webkitExitFullscreen();
+    else if (document.mozCancelFullScreen) document.mozCancelFullScreen();
+  }
+}
+
+function finishExperiment() {
+  var enc = new TextEncoder();
+  var files = [];
+  for (var i = 0; i < 10; i++) {
+    var csv = localStorage.getItem('cct_csv_' + i);
+    var name = localStorage.getItem('cct_name_' + i);
+    if (csv && name) files.push({ name: name, data: enc.encode(csv) });
+  }
+  clearStash();
+  if (files.length > 0) {
+    downloadBlob('CCT_Results.zip', buildZip(files));
+  }
+  exitFullscreen();
+  document.getElementById('intro').style.display = 'none';
+  var iframe = document.getElementById('exp');
+  if (iframe) iframe.remove();
+  document.getElementById('thanks').style.display = 'flex';
+}
+
 // ---------- Main ----------
 (function() {
   var params = new URLSearchParams(window.location.search);
 
+  // If loaded INSIDE the iframe with cct_done=1 (the final task redirected us here),
+  // bubble up to the parent launcher so it can manage fullscreen exit + zip download.
   if (params.get('cct_done') === '1') {
-    // Final stop: gather stashed CSVs, build a single zip, download it.
-    var enc = new TextEncoder();
-    var files = [];
-    for (var i = 0; i < 10; i++) {
-      var csv = localStorage.getItem('cct_csv_' + i);
-      var name = localStorage.getItem('cct_name_' + i);
-      if (csv && name) {
-        files.push({ name: name, data: enc.encode(csv) });
-      }
+    if (window.parent && window.parent !== window) {
+      try { window.parent.postMessage('cct_done', '*'); } catch (e) {}
+      document.body.innerHTML = '';
+    } else {
+      // Loaded standalone (no parent launcher) — handle directly.
+      document.getElementById('intro').style.display = 'none';
+      finishExperiment();
     }
-    // Clear stash either way.
-    for (var j = 0; j < 10; j++) {
-      localStorage.removeItem('cct_csv_' + j);
-      localStorage.removeItem('cct_name_' + j);
-    }
-    if (files.length > 0) {
-      var zip = buildZip(files);
-      downloadBlob('CCT_Results.zip', zip);
-    }
-    document.getElementById('msg').innerHTML =
-      '<h1>Thank you for participating!</h1>' +
-      '<p>Your data has been saved. You may close this window.</p>';
     return;
   }
 
-  // Fresh launch: clear any leftover stash and redirect to first task.
-  try {
-    for (var k = 0; k < 10; k++) {
-      localStorage.removeItem('cct_csv_' + k);
-      localStorage.removeItem('cct_name_' + k);
-    }
-  } catch (e) {}
-
+  // Fresh launch in the top window: clear stash, prepare order, wait for click.
+  clearStash();
   var order = Math.random() < 0.5 ? ['hot', 'cold'] : ['cold', 'hot'];
   var orderStr = order.join(',');
   var firstUrl = '../columbia-card-task-' + order[0] + '/index.html'
                  + '?cct_order=' + encodeURIComponent(orderStr) + '&cct_i=0';
-  document.getElementById('manual').href = firstUrl;
-  window.location.replace(firstUrl);
+
+  window.addEventListener('message', function(e) {
+    if (e.data === 'cct_done') finishExperiment();
+  });
+
+  document.getElementById('start').addEventListener('click', function() {
+    var el = document.documentElement;
+    var req = el.requestFullscreen || el.webkitRequestFullscreen || el.mozRequestFullScreen;
+    if (req) {
+      try { req.call(el); } catch (e) {}
+    }
+    document.getElementById('intro').style.display = 'none';
+    var iframe = document.createElement('iframe');
+    iframe.id = 'exp';
+    iframe.allow = 'fullscreen';
+    iframe.allowFullscreen = true;
+    iframe.src = firstUrl;
+    document.body.appendChild(iframe);
+  });
 })();
 </script>
 </body>
