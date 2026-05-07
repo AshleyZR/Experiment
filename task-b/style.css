@@ -99,7 +99,7 @@
 
 
 .titleboxLeft {
-  width:22vw;
+  width:18vw;
   height: 2vw;
   position:absolute;
   top:10%;
@@ -111,7 +111,7 @@
 }
 
 .titleboxLeft1 {
-  width:22vw;
+  width:18vw;
   height: 2vw;
   position:absolute;
   top:40%;
@@ -123,11 +123,11 @@
 }
 
 .titleboxRight {
-  width:22vw;
+  width:18vw;
   height: 2vw;
   position:absolute;
   top:10%;
-  left:72%;
+  left:76%;
   margin-right:-50%;
   transform: translate(0%,0%);
   border-style: solid;
@@ -135,11 +135,11 @@
 }
 
 .titleboxRight1 {
-  width:22vw;
+  width:18vw;
   height: 2vw;
   position:absolute;
   top:40%;
-  left:72%;
+  left:76%;
   margin-right:-50%;
   transform: translate(0%,0%);
   border-style: solid;
@@ -180,6 +180,16 @@
   transform: translateX(-50%);
   border-style: solid;
   border-color: white;
+  z-index: 10;
+}
+
+.buttonbox2 {
+  width: 14vw;
+  height: 6vh;
+  position: fixed;
+  top: 50vh;
+  left: 50%;
+  transform: translate(-50%, -50%);
   z-index: 10;
 }
 
