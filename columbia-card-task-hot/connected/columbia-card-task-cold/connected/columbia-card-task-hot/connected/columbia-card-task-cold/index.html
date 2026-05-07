@@ -1,0 +1,150 @@
+<!DOCTYPE html><html class=''>
+<head>
+    <meta charset='UTF-8'>
+    <meta name="robots" content="noindex">
+    <title>Experiment</title>
+
+<link rel='stylesheet' type='text/css' href='jspsych.css'>
+<link rel='stylesheet' type='text/css' href='default_style.css'>
+<link rel='stylesheet' type='text/css' href='style.css'>
+</head>
+
+<body>
+<script src='js/jquery.min.js'></script>
+<script src='js/jspsych/jspsych.js'></script>
+<script src='js/math.min.js'></script>
+<script src='js/jspsych/plugins/jspsych-text.js'></script>
+<script src='js/jspsych/poldrack_plugins/jspsych-poldrack-text.js'></script>
+<script src='js/jspsych/poldrack_plugins/jspsych-poldrack-instructions.js'></script>
+<script src='js/jspsych/plugins/jspsych-call-function.js'></script>
+<script src='js/jspsych/poldrack_plugins/jspsych-attention-check.js'></script>
+<script src='js/jspsych/poldrack_plugins/jspsych-poldrack-single-stim.js'></script>
+<script src='js/jspsych/plugins/jspsych-survey-text.js'></script>
+<script src='js/jspsych/poldrack_plugins/jspsych-single-stim-button.js'></script>
+<script src='js/jspsych/poldrack_plugins/poldrack_utils.js'></script>
+<script src='experiment.js'></script>
+
+<script>
+var DROP_COLUMNS = ['block_duration', 'stim_duration', 'possible_responses', 'fixation_appear_time', 'fixation_end_time', 'responses'];
+
+function buildFilteredCSV(dropCols) {
+    var rows = jsPsych.data.getData();
+    if (!rows || rows.length === 0) {
+        return '';
+    }
+    var allKeys = [];
+    var seen = {};
+    for (var i = 0; i < rows.length; i++) {
+        for (var k in rows[i]) {
+            if (rows[i].hasOwnProperty(k) && !seen[k]) {
+                seen[k] = true;
+                allKeys.push(k);
+            }
+        }
+    }
+    var keys = allKeys.filter(function(k) { return dropCols.indexOf(k) === -1; });
+
+    function escape(val) {
+        if (val === null || val === undefined) return '';
+        var s = (typeof val === 'object') ? JSON.stringify(val) : String(val);
+        if (/[",\n\r]/.test(s)) {
+            s = '"' + s.replace(/"/g, '""') + '"';
+        }
+        return s;
+    }
+
+    var lines = [keys.join(',')];
+    for (var i = 0; i < rows.length; i++) {
+        var row = rows[i];
+        var line = [];
+        for (var j = 0; j < keys.length; j++) {
+            line.push(escape(row[keys[j]]));
+        }
+        lines.push(line.join(','));
+    }
+    return lines.join('\n');
+}
+
+function downloadCSV(filename, csvText) {
+    var blob = new Blob([csvText], {type: 'text/csv;charset=utf-8;'});
+    var url = URL.createObjectURL(blob);
+    var a = document.createElement('a');
+    a.href = url;
+    a.download = filename;
+    document.body.appendChild(a);
+    a.click();
+    document.body.removeChild(a);
+    URL.revokeObjectURL(url);
+}
+
+function saveFilteredCSV(filename, dropCols) {
+    downloadCSV(filename, buildFilteredCSV(dropCols));
+}
+
+var IN_CHAINED_MODE = new URLSearchParams(window.location.search).has('cct_order');
+
+$( document ).ready(function() {
+
+    jsPsych.init({
+             timeline: columbia_card_task_cold_experiment,
+             display_element: "getDisplayElement",
+             fullscreen: !IN_CHAINED_MODE,
+             on_trial_finish: function(data){
+               addID('columbia-card-task-cold')
+             },
+
+             on_finish: function(data){
+
+                 var params = new URLSearchParams(window.location.search);
+                 var order = params.get('cct_order');
+                 var idx = parseInt(params.get('cct_i') || '0', 10);
+
+                 if (order) {
+                     // Chained mode: stash CSV; download all files only after the final task.
+                     var orderArr = order.split(',');
+                     var roundLabel = (idx === 0) ? 'FirstRound' : 'SecondRound';
+                     var filename = roundLabel + '_Cold.csv';
+                     try {
+                         localStorage.setItem('cct_csv_' + idx, buildFilteredCSV(DROP_COLUMNS));
+                         localStorage.setItem('cct_name_' + idx, filename);
+                     } catch (e) {}
+
+                     if (idx + 1 < orderArr.length) {
+                         window.location.href = '../columbia-card-task-' + orderArr[idx + 1]
+                             + '/index.html?cct_order=' + encodeURIComponent(order)
+                             + '&cct_i=' + (idx + 1);
+                     } else {
+                         // Final task: hand off to launcher, which builds and downloads the zip.
+                         window.location.href = '../index.html?cct_done=1';
+                     }
+                     return;
+                 }
+
+                 // Standalone mode: original behavior (server save with local fallback).
+                 var promise = new Promise(function(resolve, reject) {
+                     var d = jsPsych.data.dataAsJSON();
+                     resolve(d);
+                 });
+                 promise.then(function(data) {
+                     $.ajax({
+                         type: "POST",
+                         url: '/save',
+                         data: { "data": data },
+                         success: function(){ document.location = "/next"; },
+                         dataType: "application/json",
+                         error: function(err) {
+                             if (err.status == 200) {
+                                 document.location = "/next";
+                             } else {
+                                 saveFilteredCSV('columbia-card-task-cold_results.csv', DROP_COLUMNS);
+                             }
+                         }
+                     });
+                 });
+             }
+
+      });
+});
+</script>
+</body>
+</html>
