@@ -257,9 +257,9 @@ var getRound = function() {
 	}
 	gameState = gameSetup
 	gameState = appendTextAfter(gameState, 'Game Round: ', whichRound)
-	gameState = appendTextAfter(gameState, 'Loss Amount: ', '<strong style="color:red">' + lossAmt + '</strong>')
-	gameState = appendTextAfter(gameState, 'Number of Loss Cards: ', '<strong style="color:red">' + numLossCards + '</strong>')
-	gameState = appendTextAfter(gameState, 'Gain Amount: ', '<strong style="color:red">' + gainAmt + '</strong>')
+	gameState = appendTextAfter(gameState, 'Loss Amount: ', '<strong style=\"color:red\">' + lossAmt + '</strong>')
+	gameState = appendTextAfter(gameState, 'Number of Loss Cards: ', '<strong style=\"color:red\">' + numLossCards + '</strong>')
+	gameState = appendTextAfter(gameState, 'Gain Amount: ', '<strong style=\"color:red\">' + gainAmt + '</strong>')
 	return gameState
 }
 
@@ -295,7 +295,7 @@ var prize3 = 0
 var practiceSetup1 =
 	"<div class = practiceText><div class = block-text2 id = instruct1><strong>Practice 1: </strong>This is a practice round, and it looks just like the real game. Please select the number of cards (from 0 to 32) you would like to turn over, given the number of loss cards and the points you can gain or lose, as shown below. If turning over any cards seems too risky, you can click the zero button — your score for this round will then be zero. Please note: The computer will tell you how well you did after all " + numRounds + " game rounds are over.</div></div>" +
 	"<div class = cct-box2>"+
-	"<div class = titleBigBox>   <div class = titleboxLeft><div class = center-text id = game_round>Game Round: 1</div></div>   <div class = titleboxLeft1><div class = center-text id = loss_amount>Loss Amount: <strong style="color:red">250</strong></div></div>    <div class = titleboxMiddle1><div class = center-text id = gain_amount>Gain Amount: <strong style="color:red">30</strong></div></div>    <div class = titlebox><div class = center-text>How many cards do you want to take? </div></div>     <div class = titleboxRight1><div class = center-text id = num_loss_cards>Number of Loss Cards: <strong style="color:red">1</strong></div></div>"+
+	"<div class = titleBigBox>   <div class = titleboxLeft><div class = center-text id = game_round>Game Round: 1</div></div>   <div class = titleboxLeft1><div class = center-text id = loss_amount>Loss Amount: <strong style=\"color:red\">250</strong></div></div>    <div class = titleboxMiddle1><div class = center-text id = gain_amount>Gain Amount: <strong style=\"color:red\">30</strong></div></div>    <div class = titlebox><div class = center-text>How many cards do you want to take? </div></div>     <div class = titleboxRight1><div class = center-text id = num_loss_cards>Number of Loss Cards: <strong style=\"color:red\">1</strong></div></div>"+
 	"<div class = buttonbox><button type='button' id = nextButton class = 'CCT-btn select-button' onclick = clearTimers() disabled>Next Round</button></div>"+
 	getButtons()+
 	"</div>"+
@@ -306,7 +306,7 @@ var practiceSetup1 =
 var practiceSetup2 =
  	"<div class = practiceText><div class = block-text2 id = instruct2><strong>Practice 2: </strong> The computer will record your points for each round and will show you the total after you finish all " + numRounds + " rounds of the game.  This is the second practice round. Please again select as many cards as you would like to, given the number of loss cards and the amounts that you can win or lose if you turn over a gain or loss card, as shown below.</div></div>"+
 	"<div class = cct-box2>"+
-	"<div class = titleBigBox>   <div class = titleboxLeft><div class = center-text id = game_round>Game Round: 2</div></div>   <div class = titleboxLeft1><div class = center-text id = loss_amount>Loss Amount: <strong style="color:red">750</strong></div></div>    <div class = titleboxMiddle1><div class = center-text id = gain_amount>Gain Amount: <strong style="color:red">10</strong></div></div>    <div class = titlebox><div class = center-text>How many cards do you want to take? </div></div>     <div class = titleboxRight1><div class = center-text id = num_loss_cards>Number of Loss Cards: <strong style="color:red">3</strong></div></div>"+
+	"<div class = titleBigBox>   <div class = titleboxLeft><div class = center-text id = game_round>Game Round: 2</div></div>   <div class = titleboxLeft1><div class = center-text id = loss_amount>Loss Amount: <strong style=\"color:red\">750</strong></div></div>    <div class = titleboxMiddle1><div class = center-text id = gain_amount>Gain Amount: <strong style=\"color:red\">10</strong></div></div>    <div class = titlebox><div class = center-text>How many cards do you want to take? </div></div>     <div class = titleboxRight1><div class = center-text id = num_loss_cards>Number of Loss Cards: <strong style=\"color:red\">3</strong></div></div>"+
 	"<div class = buttonbox><button type='button' id = nextButton class = 'CCT-btn select-button' onclick = clearTimers() disabled>Next Round</button></div>"+
 	getButtons()+
 	"</div>"+
