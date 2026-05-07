@@ -2,7 +2,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Columbia Card Task</title>
+<title>Experiment</title>
 <style>
   html, body { margin: 0; padding: 0; height: 100%; background: #fff; }
   body { font-family: sans-serif; }
@@ -19,7 +19,7 @@
 <body>
 
 <div id="intro">
-  <h1 style="font-weight:normal;">Columbia Card Task</h1>
+  <h1 style="font-weight:normal;">Experiment</h1>
   <p>You will complete two short tasks back-to-back. The experiment will run in fullscreen.</p>
   <p><button class="primary" id="start">Launch Experiment</button></p>
 </div>
@@ -134,8 +134,8 @@ function downloadBlob(filename, blob) {
 
 function clearStash() {
   for (var i = 0; i < 10; i++) {
-    localStorage.removeItem('cct_csv_' + i);
-    localStorage.removeItem('cct_name_' + i);
+    localStorage.removeItem('e_csv_' + i);
+    localStorage.removeItem('e_name_' + i);
   }
 }
 
@@ -151,13 +151,13 @@ function finishExperiment() {
   var enc = new TextEncoder();
   var files = [];
   for (var i = 0; i < 10; i++) {
-    var csv = localStorage.getItem('cct_csv_' + i);
-    var name = localStorage.getItem('cct_name_' + i);
+    var csv = localStorage.getItem('e_csv_' + i);
+    var name = localStorage.getItem('e_name_' + i);
     if (csv && name) files.push({ name: name, data: enc.encode(csv) });
   }
   clearStash();
   if (files.length > 0) {
-    downloadBlob('CCT_Results.zip', buildZip(files));
+    downloadBlob('Results.zip', buildZip(files));
   }
   exitFullscreen();
   document.getElementById('intro').style.display = 'none';
@@ -170,29 +170,26 @@ function finishExperiment() {
 (function() {
   var params = new URLSearchParams(window.location.search);
 
-  // If loaded INSIDE the iframe with cct_done=1 (the final task redirected us here),
-  // bubble up to the parent launcher so it can manage fullscreen exit + zip download.
-  if (params.get('cct_done') === '1') {
+  // Final stop: the last task redirected back here with d=1.
+  if (params.get('d') === '1') {
     if (window.parent && window.parent !== window) {
-      try { window.parent.postMessage('cct_done', '*'); } catch (e) {}
+      try { window.parent.postMessage('exp_done', '*'); } catch (e) {}
       document.body.innerHTML = '';
     } else {
-      // Loaded standalone (no parent launcher) — handle directly.
       document.getElementById('intro').style.display = 'none';
       finishExperiment();
     }
     return;
   }
 
-  // Fresh launch in the top window: clear stash, prepare order, wait for click.
+  // Fresh launch: clear stash, prepare random order, wait for click.
   clearStash();
-  var order = Math.random() < 0.5 ? ['hot', 'cold'] : ['cold', 'hot'];
+  var order = Math.random() < 0.5 ? ['a', 'b'] : ['b', 'a'];
   var orderStr = order.join(',');
-  var firstUrl = 'columbia-card-task-' + order[0] + '/index.html'
-                 + '?cct_order=' + encodeURIComponent(orderStr) + '&cct_i=0';
+  var firstUrl = 'task-' + order[0] + '/index.html?s=' + encodeURIComponent(orderStr) + '&i=0';
 
   window.addEventListener('message', function(e) {
-    if (e.data === 'cct_done') finishExperiment();
+    if (e.data === 'exp_done') finishExperiment();
   });
 
   document.getElementById('start').addEventListener('click', function() {
