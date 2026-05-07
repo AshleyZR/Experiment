@@ -464,16 +464,6 @@ var end_block = {
   	on_finish: assessPerformance
 };
 
-var start_practice_block = {
-	type: 'poldrack-text',
-	data: {
-		trial_id: 'practice_intro'
-	},
-	text: '<div class = centerbox><p class = center-block-text>Hello<strong>enter</strong> to begin.</p></div>',
-	cont_key: [13],
-	timing_post_trial: 1000
-};
-
 var start_test_block = {
 	type: 'poldrack-text',
 	data: {
