@@ -2,7 +2,7 @@
 
 html {
   font-family: sans-serif;
-  font-size: 18px;
+  font-size: 26px;
   line-height: 1.6em;
 }
 
@@ -74,14 +74,14 @@ body {
   text-align: center;
   margin: 0 auto;
   margin-bottom: 1em;
-  font-size: 26px;
+  font-size: 37px;
   line-height: 120%;
 }
 
 /* used for large text shown in the center of the screen, like FB or stimuli */
 .center-text {
   text-align:center;
-  font-size: 60px;
+  font-size: 86px;
   position: relative;
   top: 50%;
   -ms-transform: translateY(-50%);
@@ -92,7 +92,7 @@ body {
 /* fixation should be used like this in: '<div class = centerbox><div class = fixation>+</div></div>'*/
 .fixation {
   text-align: center;
-  font-size: 150px;
+  font-size: 216px;
   position: relative;
   top: 50%; 
   transform: translateY(-50%);
@@ -102,7 +102,7 @@ body {
 
 /* Used in lists */
 .list-text li{
-  font-size: 20px;
+  font-size: 29px;
 }
 
 /* flex box used to vertically and horizontally center an img.
@@ -137,7 +137,7 @@ Sample html: <div class = centerbox><div class = img-container><img...></img></d
 
 .jspsych-instructions-nav p {
   font-family: 'Roboto' serif;
-  font-size: 20px;
+  font-size: 29px;
   line-height: 20px;
 }
 
@@ -185,7 +185,7 @@ label.jspsych-poldrack-survey-multi-choice-text input[type="radio"] {
   margin:0;
   padding:0 0 35px;
   display:block;
-  font-size: 13px;
+  font-size: 19px;
   line-height:1.1em;
 }
 
@@ -236,7 +236,7 @@ label.jspsych-poldrack-survey-multi-choice-text input[type="radio"] {
     width: 1.5em;
     border-radius: 50%;
     outline: none;
-    font-size: 14px;
+    font-size: 20px;
     box-shadow: 0 1px 1px rgba(0, 0, 0, 0.2);
   display:block;
   position:relative;
@@ -266,7 +266,7 @@ label.jspsych-poldrack-survey-multi-choice-text input[type="radio"] {
     width: 1.5em;
     border-radius: 50%;
     outline: none;
-    font-size: 14px;
+    font-size: 20px;
     box-shadow: 0 1px 1px rgba(0, 0, 0, 0.2);
   display:inline-block;
   /*position:relative;
@@ -288,7 +288,7 @@ label.jspsych-poldrack-survey-multi-choice-text input[type="radio"] {
 
 /* Buttons */
 .jspsych-btn, #jspsych-instructions-next, #jspsych-instructions-back {
-  font-size:22px;
+  font-size:31px;
   font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
   padding: 12px 20px 12px 20px;
   color: white;
@@ -304,7 +304,7 @@ label.jspsych-poldrack-survey-multi-choice-text input[type="radio"] {
 }
 
 #jspsych-instructions-next, #jspsych-instructions-back {
- width: 250px;
+ min-width: 250px;
 }
 
 #jspsych-instructions-next, #jspsych-instructions-back {
@@ -354,7 +354,7 @@ label.jspsych-poldrack-survey-multi-choice-text input[type="radio"] {
   text-align: justify;
   margin: 0 auto;
   margin-bottom: 1em;
-  font-size: 24px;
+  font-size: 35px;
   line-height: 120%;
 }
 

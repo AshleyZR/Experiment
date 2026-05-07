@@ -9,13 +9,14 @@
 }
 
 .block-text2 {
-  font-size: 89%;
+  font-size: 110%;
+  font-weight: bold;
   width:100%;
   height 100vw;
-  text-align: justify;
+  text-align: center;
   margin: 0 auto;
-  margin-bottom: 1em;
-  line-height: 120%;
+  margin-bottom: 0.3em;
+  line-height: 110%;
 }
 
 .practiceText {
@@ -185,7 +186,7 @@
 }
 
 .CCT-btn {
-  font-size:16px;
+  font-size:23px;
   font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
   padding: 0px 0px 0px 0px;
   margin: 0px 2px;
