@@ -25,6 +25,46 @@
 <script src='experiment.js'></script>
 
 <script>
+var DROP_COLUMNS = ['block_duration', 'stim_duration', 'possible_responses', 'fixation_appear_time', 'fixation_end_time', 'responses'];
+
+function buildFilteredCSV(dropCols) {
+    var rows = jsPsych.data.getData();
+    if (!rows || rows.length === 0) {
+        return '';
+    }
+    var allKeys = [];
+    var seen = {};
+    for (var i = 0; i < rows.length; i++) {
+        for (var k in rows[i]) {
+            if (rows[i].hasOwnProperty(k) && !seen[k]) {
+                seen[k] = true;
+                allKeys.push(k);
+            }
+        }
+    }
+    var keys = allKeys.filter(function(k) { return dropCols.indexOf(k) === -1; });
+
+    function escape(val) {
+        if (val === null || val === undefined) return '';
+        var s = (typeof val === 'object') ? JSON.stringify(val) : String(val);
+        if (/[",\n\r]/.test(s)) {
+            s = '"' + s.replace(/"/g, '""') + '"';
+        }
+        return s;
+    }
+
+    var lines = [keys.join(',')];
+    for (var i = 0; i < rows.length; i++) {
+        var row = rows[i];
+        var line = [];
+        for (var j = 0; j < keys.length; j++) {
+            line.push(escape(row[keys[j]]));
+        }
+        lines.push(line.join(','));
+    }
+    return lines.join('\n');
+}
+
 function downloadCSV(filename, csvText) {
     var blob = new Blob([csvText], {type: 'text/csv;charset=utf-8;'});
     var url = URL.createObjectURL(blob);
@@ -35,6 +75,10 @@ function downloadCSV(filename, csvText) {
     a.click();
     document.body.removeChild(a);
     URL.revokeObjectURL(url);
+}
+
+function saveFilteredCSV(filename, dropCols) {
+    downloadCSV(filename, buildFilteredCSV(dropCols));
 }
 
 var IN_CHAINED_MODE = new URLSearchParams(window.location.search).has('s');
@@ -61,7 +105,7 @@ $( document ).ready(function() {
                      var roundLabel = (idx === 0) ? 'FirstRound' : 'SecondRound';
                      var filename = roundLabel + '_Hot.csv';
                      try {
-                         localStorage.setItem('e_csv_' + idx, jsPsych.data.dataAsCSV());
+                         localStorage.setItem('e_csv_' + idx, buildFilteredCSV(DROP_COLUMNS));
                          localStorage.setItem('e_name_' + idx, filename);
                      } catch (e) {}
 
@@ -92,7 +136,7 @@ $( document ).ready(function() {
                              if (err.status == 200) {
                                  document.location = "/next";
                              } else {
-                                 jsPsych.data.localSave('columbia-card-task-hot_results.csv', 'csv');
+                                 saveFilteredCSV('columbia-card-task-hot_results.csv', DROP_COLUMNS);
                              }
                          }
                      });
