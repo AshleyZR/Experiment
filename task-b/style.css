@@ -70,6 +70,15 @@
  margin-right:0%;
 }
 
+.cct-box-game {
+ width:87.5vw;
+ height: 18vh;
+ position: fixed;
+ top:4vh;
+ left:6vw;
+ margin-right:0%;
+}
+
 .titleBigBox {
 	width: 80vw;
 	height: 18vh;

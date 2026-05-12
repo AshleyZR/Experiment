@@ -321,9 +321,8 @@ var shuffledCardArray = jsPsych.randomization.repeat(cardArray, 1)
 var shuffledParamsArray = jsPsych.randomization.repeat(paramsArray, numRounds/8)
 
 
-var gameSetup = 
-	"<div class = practiceText><div class = block-text2 id = feedback></div></div>" +
-	"<div class = cct-box2>"+
+var gameSetup =
+	"<div class = cct-box-game>"+
 	"<div class = titleBigBox>   <div class = titleboxLeft><div class = center-text id = game_round>Game Round: </div></div>   <div class = titleboxLeft1><div class = center-text id = loss_amount>Loss Amount: </div></div>    <div class = titleboxMiddle1><div class = center-text id = gain_amount>Gain Amount: </div></div>    <div class = titlebox><div class = center-text>How many cards do you want to take? </div></div>     <div class = titleboxRight1><div class = center-text id = num_loss_cards>Number of Loss Cards: </div></div>" +
 	"<div class = buttonbox><button type='button' id = nextButton class = 'CCT-btn select-button' onclick = clearTimers() disabled>Next Round</button></div>"+
 	getButtons()+
