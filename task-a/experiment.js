@@ -617,7 +617,7 @@ var instructions_block = {
   type: 'poldrack-instructions',
   data: {trial_id: 'instruction'},
   pages: [
-	'<div class = centerbox style="font-size: 29px; line-height: 130%;"><p class = block-text><strong>Introduction and Explanation</strong>'+
+	'<div class = centerbox style="font-size: 26.1px; line-height: 130%;"><p class = block-text><strong>Introduction and Explanation</strong>'+
 	'<p>-You are now going to participate in a card game.  In this game, you will turn over cards to win or lose points which are worth money.</p>'+
 	'<p>-In each game round, you will see 32 cards on the computer screen, face down. You will decide how many of these cards to turn over. Each card is either a gain card or a loss card (there are no neutral cards). You will know how many gain cards and loss cards are in the deck of 32, and how many points you will gain or lose if you turn over a gain or loss card. What you do not know is which of the 32 cards that you see face-down are gain cards and which are loss cards. </p>'+
 	'<p>-You indicate which cards you want to flip over by clicking on them. For each gain card turned over, points are added to your round total. You continue turning over cards until a loss card is uncovered or you decide to stop. The first time a loss card is turned over, the loss points will be subtracted from your current point total and the round is over. The accumulated total will be your number of points for that round, and you go on to the next round. Each new round starts with a score of 0 points; that means you play each round independently of the other rounds.</p>'+
