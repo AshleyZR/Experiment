@@ -218,9 +218,7 @@ var chooseButton = function(clicked_id) {
 	}
 	roundPointsArray.push(roundPoints)
 	if ($('#feedback').length) {
-		document.getElementById("feedback").innerHTML =
-			'<strong>You chose ' + clicked_id +
-			' card(s)</strong>. When you click on the "Next" button, the next round starts. Please note that the loss amount, the gain amount, and the number of loss cards might have changed.'
+		document.getElementById("feedback").innerHTML = ''
 	}
 }
 
