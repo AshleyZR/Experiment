@@ -628,7 +628,7 @@ var instructions_block = {
 	'<li>how many points you gain for each gain card</li>'+
 	'<li>how many points you lose if you turn over a loss card</li></ul>'+
 	'<p>You will not know which specific face-down cards are gain cards or loss cards.</p>'+
-	'<p>In each round, you decide one card at a time. After each gain card, you can either turn over another card or stop.</p>'+
+	'<p><strong>In each round, you decide one card at a time. After each gain card, you can either turn over another card or stop.</strong></p>'+
 	'<p>If you turn over a gain card, points are added to your score for that round. If you turn over a loss card, points are subtracted from your score and the round ends immediately.</p>'+
 	'<p>Each round starts at 0 points, so each round is independent.</p>'+
 	'<p>You will play ' + numRounds + ' rounds. At the end, 3 rounds will be randomly selected, and your bonus payment will be based on your scores in those rounds.</p></div>',
