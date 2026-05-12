@@ -288,9 +288,9 @@ label.jspsych-poldrack-survey-multi-choice-text input[type="radio"] {
 
 /* Buttons */
 .jspsych-btn, #jspsych-instructions-next, #jspsych-instructions-back {
-  font-size:31px;
+  font-size:24.8px;
   font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
-  padding: 12px 20px 12px 20px;
+  padding: 9.6px 16px 9.6px 16px;
   color: white;
   background-color:cornflowerblue;
   cursor: pointer;
@@ -304,11 +304,11 @@ label.jspsych-poldrack-survey-multi-choice-text input[type="radio"] {
 }
 
 #jspsych-instructions-next, #jspsych-instructions-back {
- min-width: 250px;
+ min-width: 200px;
 }
 
 #jspsych-instructions-next, #jspsych-instructions-back {
-  padding: 12px 40px 12px 40px;
+  padding: 9.6px 32px 9.6px 32px;
 }
 
 .jspsych-btn:hover, #jspsych-instructions-next:hover, #jspsych-instructions-back:hover {
