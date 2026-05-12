@@ -593,5 +593,4 @@ for (b = 0; b < numRounds; b++) {
 	}
 }
 columbia_card_task_cold_experiment.push(payoutTrial);
-columbia_card_task_cold_experiment.push(payout_text);
 columbia_card_task_cold_experiment.push(end_block);
