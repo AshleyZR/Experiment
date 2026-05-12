@@ -407,7 +407,7 @@ var instructFunction = function() {
 	}
 	CCT_timeouts.push(setTimeout(function() {
 		document.getElementById("instruct1").innerHTML =
-		'<strong>Example 1: </strong>In the example below, you see 32 unknown cards. The display shows you that 1 of these cards is a loss card. It also tells you that turning over each gain card is worth 10 points to you, and that turning over the loss card will cost you 750 points. Let us suppose you decided to turn over 7 cards and then decided to stop. Please click the "See Result" button to see what happens: <font color = "red">Luckily, none of the seven cards you turned over happened to be the loss card, so your score for this round was 70. Please click the next button.</font>'
+		'<strong>Example 1.</strong> In this example, there are 32 face-down cards. The display tells you there is 1 loss card, each gain card is worth 10 points, and the loss card costs 750 points. Suppose you turn over 7 cards and then stop. <font color = "red">Luckily, none of the 7 cards you turned over was the loss card. You earned 10 points for each card, so your score for this round was 7 &times; 10 = 70 points. Please click Next.</font>'
 		}, delay))
 }
 
@@ -452,7 +452,7 @@ var instructFunction2 = function() {
 	doSetTimeout(13, delay, total_points, 'loss')
 	CCT_timeouts.push(setTimeout(function() {
 		document.getElementById("instruct2").innerHTML =
-			'<strong>Example 2: </strong>In the example below, you see 32 unknown cards. The display shows you that 3 of these cards are loss cards. It also tells you that turning over each gain card is worth 30 points to you, and that turning over the loss card will cost you 250 points. Let us suppose you decided to turn over 10 cards and then decided to stop. Please click the "See Result" button to see what happens: <font color = "red">This time, the fourth card you turned over was a loss card. The round ended immediately. You had earned 90 points for the 3 gain cards, then 250 points were subtracted, so your score for this round was -160. The cards you had not yet turned over are then revealed for transparency. Please click the next button.</font>'
+			'<strong>Example 2.</strong> In this example, there are 32 face-down cards. The display tells you there are 3 loss cards, each gain card is worth 30 points, and each loss card costs 250 points. <font color = "red">The fourth card was a loss card, so the round ended immediately. Before the loss card, you had turned over 3 gain cards: 3 &times; 30 = 90 points. Then the loss card subtracted 250 points: 90 &minus; 250 = &minus;160 points. Your score for this round was &minus;160 points. The remaining cards are shown for transparency. Please click Next.</font>'
 	}, delay))
 	CCT_timeouts.push(setTimeout(instructTurnCards, delay + 1000))
 }
@@ -536,14 +536,14 @@ var gameSetup =
 	getBoard()
 
 var practiceSetup =
-	"<div class = practiceText><div class = block-text2 id = instruct1><strong>Practice 1: </strong> As you click on cards, you can see your Round Total change in the box in the upper right.  If you turn over a few cards and then want to stop and go to the next round, click the <strong>Stop/Turn Over</strong> button and then <strong>Next Round</strong>.  If turning over cards seems too risky, you can click the <strong>No Card</strong> button, in which case your score for the round will automatically be zero.  This is a practice round, that looks just like the game you will play.  Please select the number of cards you would turn over, given the number of loss cards and the amounts of the gain and loss cards shown below.</div></div>"+
+	"<div class = practiceText><div class = block-text2 id = instruct1><strong>Practice 1.</strong> This is a practice round. It looks like the real game. As you click cards, your Round Total will update in the upper right corner. You can click a card to turn it over, stop after any gain card by clicking <strong>STOP/Turn Over</strong>, or click <strong>No Card</strong> if you do not want to turn over any cards (your score for the round will be 0). Please turn over as many cards as you would like, based on the number of loss cards and the gain/loss points shown below.</div></div>"+
 	"<div class = cct-box2>"+
 	"<div class = titleBigBox>   <div class = titleboxLeft><div class = center-text id = game_round>Game Round: 1</div></div>   <div class = titleboxLeft1><div class = center-text id = loss_amount>Loss Amount: <strong style=\"color:red\">250</strong></div></div>    <div class = titleboxMiddle1><div class = center-text id = gain_amount>Gain Amount: <strong style=\"color:red\">30</strong></div></div>    <div class = titlebox><div class = center-text>How many cards do you want to take? </div></div>     <div class = titleboxRight1><div class = center-text id = num_loss_cards>Number of Loss Cards: <strong style=\"color:red\">1</strong></div></div>   <div class = titleboxRight><div class = center-text id = current_round>Current Round Points: 0</div></div>"+
 	"<div class = buttonbox><button type='button' class = CCT-btn id = NoCardButton onclick = turnCards()>No Card</button><button type='button' class = CCT-btn id = turnButton onclick = turnCards() disabled>STOP/Turn Over</button><button type='button' class = 'CCT-btn select-button' id = collectButton  onclick = collect() disabled>Next Round</button></div></div>"+
 	getBoard(2)
 
 var practiceSetup2 =
-	"<div class = practiceText><div class = block-text2 id = instruct2><strong>Practice 2: </strong> The computer will record your points for each round and will show you the total after you finish all " + numRounds + " rounds of the game.  This is the second practice round. Please again turn over as many cards as you would like to, given the number of loss cards and the amounts that you can win or lose if you turn over a gain or loss card, as shown below.</div></div>"+
+	"<div class = practiceText><div class = block-text2 id = instruct2><strong>Practice 2.</strong> This is the second practice round. Again, please turn over as many cards as you would like, based on the number of loss cards and the gain/loss points shown below. The computer will record your score for each round. After all " + numRounds + " real rounds, you will see your total score.</div></div>"+
 	"<div class = cct-box2>"+
 	"<div class = titleBigBox>   <div class = titleboxLeft><div class = center-text id = game_round>Game Round: 2</div></div>   <div class = titleboxLeft1><div class = center-text id = loss_amount>Loss Amount: <strong style=\"color:red\">750</strong></div></div>    <div class = titleboxMiddle1><div class = center-text id = gain_amount>Gain Amount: <strong style=\"color:red\">10</strong></div></div>    <div class = titlebox><div class = center-text>How many cards do you want to take? </div></div>     <div class = titleboxRight1><div class = center-text id = num_loss_cards>Number of Loss Cards: <strong style=\"color:red\">3</strong></div></div>   <div class = titleboxRight><div class = center-text id = current_round>Current Round Points: 0</div></div>"+
 	"<div class = buttonbox><button type='button' class = CCT-btn id = NoCardButton onclick = turnCards()>No Card</button><button type='button' class = CCT-btn id = turnButton onclick = turnCards() disabled>STOP/Turn Over</button><button type='button' class = 'CCT-btn select-button' id = collectButton  onclick = collect() disabled>Next Round</button></div></div>"+
@@ -617,41 +617,54 @@ var instructions_block = {
   type: 'poldrack-instructions',
   data: {trial_id: 'instruction'},
   pages: [
-	'<div class = centerbox style="font-size: 26.1px; line-height: 130%;"><p class = block-text><strong>Introduction and Explanation</strong>'+
-	'<p>-You are now going to participate in a card game.  In this game, you will turn over cards to win or lose points which are worth money.</p>'+
-	'<p>-In each game round, you will see 32 cards on the computer screen, face down. You will decide how many of these cards to turn over. Each card is either a gain card or a loss card (there are no neutral cards). You will know how many gain cards and loss cards are in the deck of 32, and how many points you will gain or lose if you turn over a gain or loss card. What you do not know is which of the 32 cards that you see face-down are gain cards and which are loss cards. </p>'+
-	'<p>-You indicate which cards you want to flip over by clicking on them. For each gain card turned over, points are added to your round total. You continue turning over cards until a loss card is uncovered or you decide to stop. The first time a loss card is turned over, the loss points will be subtracted from your current point total and the round is over. The accumulated total will be your number of points for that round, and you go on to the next round. Each new round starts with a score of 0 points; that means you play each round independently of the other rounds.</p>'+
-	'<p>-You will play a total of ' + numRounds + ' rounds, three of which will be randomly selected at the end of the session, and you will get a bonus payment proportional to those rounds.</p>',
+	'<div class = centerbox style="font-size: 26.1px; line-height: 130%;"><p class = block-text><strong>Introduction</strong></p>'+
+	'<p>You will now play a card game. In this game, you can win or lose points. Points are worth money.</p>'+
+	'<p>In each round, you will see 32 face-down cards. Each card is either:</p>'+
+	'<ul><li>a gain card, which adds points to your score</li>'+
+	'<li>a loss card, which subtracts points from your score and ends the round</li></ul>'+
+	'<p>There are no neutral cards.</p>'+
+	'<p>Before each round, you will be told:</p>'+
+	'<ul><li>how many loss cards are in the deck</li>'+
+	'<li>how many points you gain for each gain card</li>'+
+	'<li>how many points you lose if you turn over a loss card</li></ul>'+
+	'<p>You will not know which specific face-down cards are gain cards or loss cards.</p>'+
+	'<p>In each round, you decide one card at a time. After each gain card, you can either turn over another card or stop.</p>'+
+	'<p>If you turn over a gain card, points are added to your score for that round. If you turn over a loss card, points are subtracted from your score and the round ends immediately.</p>'+
+	'<p>Each round starts at 0 points, so each round is independent.</p>'+
+	'<p>You will play ' + numRounds + ' rounds. At the end, 3 rounds will be randomly selected, and your bonus payment will be based on your scores in those rounds.</p></div>',
 	
-    '<div class = centerbox style="text-align:center;"><p class = block-text style="text-align:center;"><strong>Unknown Cards:</strong></p>'+
-    '<p style="text-align:center;"> This is what unknown cards looks like.  Turn it over by clicking on it.</p>'+
+    '<div class = centerbox style="text-align:center;"><p class = block-text style="text-align:center;"><strong>Unknown Cards</strong></p>'+
+    '<p style="text-align:center;">This is what an unknown card looks like.</p>'+
+    '<p style="text-align:center;">Click the card to turn it over.</p>'+
     "<p style=\"text-align:center;\"><input type='image' id = '133' src='images/beforeChosen.png' onclick = instructButton(this.id)>"+
 	'</p></div>',
 	
 	'<div class = centerbox style="text-align:center;"><p class = block-text style="text-align:center;">'+
-	'<p style="text-align:center;"><strong>The Gain Card:</strong></p>'+
-	'<p style="text-align:center;">For every gain card you turn over, your score increases by either 10 or 30 points in different rounds.</p>'+
+	'<p style="text-align:center;">There are two types of cards:</p>'+
+	'<p style="text-align:center;"><strong>Gain cards:</strong></p>'+
+	'<p style="text-align:center;">Each gain card increases your score by either 10 or 30 points, depending on the round.</p>'+
 	"<p style=\"text-align:center;\"><input type='image' src='images/chosen.png'>"+
-	'<p style="text-align:center;"><strong>The Loss Card:</strong></p>'+
+	'<p style="text-align:center;"><strong>Loss cards:</strong></p>'+
 	"<p style=\"text-align:center;\"><input type='image' src='images/loss.png'></p>"+
-	'<p style="text-align:center;">For every loss card you turn over, your score decreases by either 250 or 750 points in different rounds. Furthermore, the round immediately ends (you cannot turn over any more cards). There will be either 1 or 3 loss cards in any given round.</p>'+
-	'<p style="text-align:center;">The number of loss cards and the value of points that can be won or lost by turning over a gain or loss card are fixed in each round. This information will always be on display so you know what kind of round you are in.</p>'+
+	'<p style="text-align:center;">Each loss card decreases your score by either 250 or 750 points, depending on the round. If you turn over a loss card, the round ends immediately.</p>'+
+	'<p style="text-align:center;">Each round will have either 1 or 3 loss cards among the 32 cards.</p>'+
+	'<p style="text-align:center;">The number of loss cards, the gain amount, and the loss amount will always be shown on the screen during the round.</p>'+
 	'</p></div>',
 	
-	"<div class = practiceText><div class = block-text2 id = instruct1><strong>Example 1: In the example below, you see 32 unknown cards. The display shows you that 1 of these cards is a loss card. It also tells you that turning over each gain card is worth 10 points to you, and that turning over the loss card will cost you 750 points. Let us suppose you decided to turn over 7 cards and then decided to stop. Please click the \"See Result\" button to see what happens: </strong></div></div>"+
+	"<div class = practiceText><div class = block-text2 id = instruct1><strong>Example 1.</strong> In this example, there are 32 face-down cards. The display tells you there is 1 loss card, each gain card is worth 10 points, and the loss card costs 750 points. Suppose you turn over 7 cards and then stop. Click <strong>See Result</strong> to see what happens.</div></div>"+
 	"<div class = cct-box2>"+
 	"<div class = titleBigBox>   <div class = titleboxLeft><div class = center-text>Game Round: 1</div></div>   <div class = titleboxLeft1><div class = center-text>Loss Amount: <strong style=\"color:red\">750</strong></div></div>    <div class = titleboxMiddle1><div class = center-text>Gain Amount: <strong style=\"color:red\">10</strong></div></div>    <div class = titlebox><div class = center-text>How many cards do you want to take? </div></div>     <div class = titleboxRight1><div class = center-text>Number of Loss Cards: <strong style=\"color:red\">1</strong></div></div>   <div class = titleboxRight><div class = center-text id = current_round>Current Round Points: 0</div></div>"+
 	"<div class = buttonbox><button type='button' class = 'CCT-btn select-button' id = NoCardButton disabled>No Card</button><button type='button' class = 'CCT-btn select-button' class = 'CCT-btn select-button' id = turnButton disabled>STOP/Turn Over</button><button type='button' class = 'CCT-btn select-button' id = collectButton  disabled>Next Round</button></div>"+
 	"<div class = buttonbox2><button type='button' class = CCT-btn id = instructButton onclick= instructFunction()>See Result</button></div></div>"+
 	getBoard(2),
 	
-	"<div class = practiceText><div class = block-text2 id = instruct2><strong>Example 2: In the example below, you see 32 unknown cards. The display shows you that 3 of these cards are loss cards. It also tells you that turning over each gain card is worth 30 points to you, and that turning over the loss card will cost you 250 points. Let us suppose you decided to turn over 10 cards and then decided to stop. Please click the \"See Result\" button to see what happens:</strong></div></div>"+
+	"<div class = practiceText><div class = block-text2 id = instruct2><strong>Example 2.</strong> In this example, there are 32 face-down cards. The display tells you there are 3 loss cards, each gain card is worth 30 points, and each loss card costs 250 points. Suppose you begin turning over cards and the fourth card is a loss card. Click <strong>See Result</strong> to see what happens.</div></div>"+
 	"<div class = cct-box2>"+
 	"<div class = titleBigBox>   <div class = titleboxLeft><div class = center-text>Game Round: 1</div></div>   <div class = titleboxLeft1><div class = center-text>Loss Amount: <strong style=\"color:red\">250</strong></div></div>    <div class = titleboxMiddle1><div class = center-text>Gain Amount: <strong style=\"color:red\">30</strong></div></div>    <div class = titlebox><div class = center-text>How many cards do you want to take? </div></div>     <div class = titleboxRight1><div class = center-text>Number of Loss Cards: <strong style=\"color:red\">3</strong></div></div>   <div class = titleboxRight><div class = center-text id = current_round>Current Round Points: 0</div></div>"+
 	"<div class = buttonbox><button type='button' class = 'CCT-btn select-button' id = NoCardButton disabled>No Card</button><button type='button' class = 'CCT-btn select-button' class = 'CCT-btn select-button' id = turnButton disabled>STOP/Turn Over</button><button type='button' class = 'CCT-btn select-button' id = collectButton  disabled>Next Round</button></div>"+
 	"<div class = buttonbox2><button type='button' class = CCT-btn id = instructButton onclick= instructFunction2()>See Result</button></div></div>"+
 	getBoard(2),
-	"<div class = centerbox><p class = block-text>After you end the instructions you will complete two practice rounds before proceeding. Please make sure you understand the examples on the last two pages before ending the instructions.</p></div>"
+	"<div class = centerbox><p class = block-text>You will now complete two practice rounds before the real game begins.</p><p class = block-text>Please make sure you understand the examples before continuing.</p></div>"
   ],
   allow_keys: false,
   show_clickable_nav: true,
