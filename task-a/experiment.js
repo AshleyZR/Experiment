@@ -835,5 +835,4 @@ for (i = 0; i < numRounds; i++) {
 }
 
 columbia_card_task_hot_experiment.push(payoutTrial);
-columbia_card_task_hot_experiment.push(post_task_block)
 columbia_card_task_hot_experiment.push(end_block);
