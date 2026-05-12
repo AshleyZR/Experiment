@@ -379,7 +379,7 @@ var instructions_block = {
   type: 'poldrack-instructions',
   data: {trial_id: 'instruction'},
   pages: [
-	'<div class = centerbox style="font-size: 29px; line-height: 130%;"><p class = block-text><strong>Introduction and Explanation</strong>'+
+	'<div class = centerbox style="font-size: 26.1px; line-height: 130%;"><p class = block-text><strong>Introduction and Explanation</strong>'+
 	'<p>-You are now going to participate in a card game.  In this game, you will turn over cards to win or lose points which are worth money.</p>'+
 	'<p>-In each game round, you will see 32 cards on the computer screen, face down. You will decide how many of these cards to turn over. Each card is either a gain card or a loss card (there are no neutral cards). You will know how many gain cards and loss cards are in the deck of 32, and how many points you will gain or lose if you turn over a gain or loss card. What you do not know is which of the 32 cards that you see face-down are gain cards and which are loss cards. </p>'+
 	'<p>-You indicate the number of cards (from 0 to 32) you want to turn over by clicking on a small button. The game will then turn that many cards over, randomly selected from the 32. For each gain card revealed, points are added to your round total. If a loss card is revealed, the loss points are subtracted from your total and the round ends immediately — even if you chose to turn over more cards. The remaining cards you would have turned over are then shown to you for transparency, but they do not affect your score. Each new round starts with a score of 0 points, so you play each round independently of the others.</p>'+
@@ -410,7 +410,7 @@ var instructions_block = {
 	"<div class = titleBigBox>   <div class = titleboxLeft><div class = center-text>Game Round: 1</div></div>   <div class = titleboxLeft1><div class = center-text>Loss Amount: <strong style=\"color:red\">250</strong></div></div>    <div class = titleboxMiddle1><div class = center-text>Gain Amount: <strong style=\"color:red\">30</strong></div></div>    <div class = titlebox><div class = center-text>How many cards do you want to take? </div></div>     <div class = titleboxRight1><div class = center-text>Number of Loss Cards: <strong style=\"color:red\">3</strong></div></div>   <div class = titleboxRight><div class = center-text id = current_round>Current Round Points: 0</div></div>"+
 	"<div class = buttonbox2><button type='button' class = CCT-btn id = instructButton onclick= instructFunction2()>See Result</button></div></div>"+
 	getBoard(2),
-	"<div class = centerbox style=\"font-size: 29px; line-height: 130%;\"><p class = block-text>You're now ready to play. We'll start with two practice rounds so you can get a feel for the game, and then the real rounds will begin. Before proceeding, please make sure you understand the examples on the last two pages.</p></div>"
+	"<div class = centerbox style=\"font-size: 26.1px; line-height: 130%;\"><p class = block-text>You're now ready to play. We'll start with two practice rounds so you can get a feel for the game, and then the real rounds will begin. Before proceeding, please make sure you understand the examples on the last two pages.</p></div>"
   ],
   allow_keys: false,
   show_clickable_nav: true,
