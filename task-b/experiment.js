@@ -73,12 +73,6 @@ var getBoard = function(board_type) {
 	return board
 }
 
-var getText = function() {
-	return '<div class = centerbox><p class = block-text>Overall, you earned ' + totalPoints + ' points. These are the points used for your bonus from three randomly picked trials:  ' +
-		'<ul list-text><li>' + prize1 + '</li><li>' + prize2 + '</li><li>' + prize3 + '</li></ul>' +
-		'</p><p class = block-text>Press <strong>enter</strong> to continue.</p></div>'
-}
-
 var turnOneCard = function(whichCard, win) {
 	if (win === 'loss') {
 		document.getElementById("c" + whichCard + "").src =
@@ -195,10 +189,6 @@ var getPractice2 = function() {
 	gainAmt = 10
 	lossAmt = 750
 	return practiceSetup2
-}
-
-var appendPayoutData = function(){
-	jsPsych.data.addDataToLastTrial({reward: [prize1, prize2, prize3]})
 }
 
 var chooseButton = function(clicked_id) {
@@ -548,17 +538,6 @@ var round_delay = {
 	button_html: '<button style="display:none;"></button>',
 	response_ends_trial: false,
 	timing_response: 6000
-};
-
-var payout_text = {
-	type: 'poldrack-text',
-	text: getText,
-	data: {
-		trial_id: 'reward'
-	},
-	cont_key: [13],
-	timing_post_trial: 1000,
-	on_finish: appendPayoutData,
 };
 
 var payoutTrial = {
